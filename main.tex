@@ -180,13 +180,37 @@ cached.saveAsTextFile("tmp.txt")
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Accessing particle physics data in Spark}
+\begin{frame}[fragile]{Accessing particle physics data in Spark}
+\large
 \vspace{0.5 cm}
+\begin{description}
+\item[Spark-ROOT:] presents a large set of ROOT files as a Spark DataFrame
 
+\small
+\begin{minted}{python}
+mydata = (spark.read.format("org.dianahep.sparkroot")
+                    .option("tree", "Events")
+                    .load("many-files/*.root"))
+\end{minted}
 
+\normalsize
+\textcolor{blue}{\url{https://github.com/diana-hep/spark-root}}
+\large
 
+\vspace{0.5 cm}
+\item[XRootD-HDFS:] presents an XRootD service (e.g.\ EOS) as HDFS for Spark
 
+\small
+\begin{minted}{python}
+...load("hdfs://eos.cern.ch/many-files/*.root")
+\end{minted}
 
+\normalsize
+\textcolor{blue}{\url{https://github.com/opensciencegrid/xrootd-hdfs}}
+\end{description}
+
+\vspace{0.5 cm}
+\uncover<2->{\fbox{\begin{minipage}{0.95\linewidth} ROOT's new RDataFrame adds a Spark-like interface to local ROOT files; potential for driving Spark from ROOT in the future. \end{minipage}}}
 \end{frame}
 
 
