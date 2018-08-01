@@ -213,6 +213,22 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 \uncover<2->{\fbox{\begin{minipage}{0.95\linewidth} ROOT's new RDataFrame adds a Spark-like interface to local ROOT files; potential for driving Spark from ROOT in the future. \end{minipage}}}
 \end{frame}
 
+\begin{frame}{Awkwardness of Spark}
+\Large
+\vspace{0.5 cm}
+\begin{columns}
+\column{1.05\linewidth}
+\begin{center}
+\textcolor{darkorange}{\bf Spark runs on Java Virtual Machines (ubiquitous in business).}
+
+\vspace{1 cm}
+\uncover<2->{\textcolor{darkgreen}{Hard to interface C++ (especially ROOT) with Java; \\ PySpark performance is limited by its Java-Python tunnel.}}
+
+\vspace{1 cm}
+\uncover<3->{\textcolor{mauve}{Python itself is much more open to interoperability with C++, \\ has similar distributed computing projects: Dask, Joblib, Parsl\ldots}}
+\end{center}
+\end{columns}
+\end{frame}
 
 
 
