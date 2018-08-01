@@ -95,7 +95,7 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \uncover<2->{\mbox{ } \hfill \includegraphics[width=0.7\linewidth]{aws-snowmobile.jpg}\hspace{-1 cm}}
 \end{frame}
 
-\begin{frame}{Recently developed, but many eyes on the code\ldots}
+\begin{frame}{Their tools are new, but have many eyes on the code\ldots}
 \vspace{0.5 cm}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{root-spark-google-trends.png}
@@ -145,12 +145,14 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \vspace{0.5 cm}
 \begin{columns}[b]
 \column{0.59\linewidth}
-\textcolor{darkblue}{\Large \underline{Functional programming, managed data:}}
+\includegraphics[height=1.5 cm]{spark-logo.png}
+
+\textcolor{darkblue}{\Large \underline{Functional programming, managed data}}
 
 \large
 \vspace{0.25 cm}
 \begin{itemize}
-\item Big, distributed dataset is a local variable
+\item Big, distributed dataset is a local variable:
 
 \scriptsize
 \begin{minted}{python}
@@ -174,8 +176,8 @@ cached.saveAsTextFile("tmp.txt")
 
 \large
 \begin{itemize}
-\item Reduction or saving triggers a distributed job
-\item Spark manages files, dependencies, retry-on-failure
+\item Distributed job starts when you ask for its output
+\item Spark manages files, task dependencies, retry-on-failure
 \item Distributed dataset may be in RAM (fast), disk (big), or both (spill-over)
 \end{itemize}
 \end{frame}
@@ -277,16 +279,24 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 \begin{frame}{Accessing ROOT data in Python}
 \large
 \vspace{0.5 cm}
+\renewcommand\CancelColor{\color{red}}
 \begin{description}\setlength{\itemsep}{0.5 cm}
 \item[PyROOT:] general solution but slow if called in a loop over events; new ROOT features like {\normalsize\tt TTree::AsMatrix()} fill Numpy arrays directly, but only for primitive types.
 
-\item[root\_numpy:]<2-> good solution for many years, except slow for nested data (e.g.~{\normalsize\tt std::vector<float>}) and compiles against a version of ROOT: changing ROOT version causes binary incompatibility.
+\item[root\_numpy:]<2-> good solution for many years, except slow for nested data (e.g.~{\normalsize\tt std::vector<float>}) and compiles against a version of ROOT; changing ROOT version causes binary incompatibility.
 
 \item[uproot:]<3-> reimplementation of ROOT I/O in Python+Numpy, skipping a step that is unnecessary for filling arrays:
 
-\vspace{0.5 cm}
+\vspace{0.35 cm}
 \mbox{ } \hfill bytes of ROOT file $\to$ \only<3>{C++ objects}\only<4>{\xcancel{C++ objects}} $\to$ Numpy arrays \hfill \mbox{ }
+
+\vspace{0.35 cm}
+\textcolor{gray}{(disclosure: I'm the author)}
 \end{description}
+\end{frame}
+
+\begin{frame}{}
+
 \end{frame}
 
 
