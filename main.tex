@@ -102,7 +102,7 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \end{center}
 \end{frame}
 
-\begin{frame}{Their ecosystem developed largely independently of ours}
+\begin{frame}{Their ecosystem was mostly developed independently of ours}
 \vspace{0.17 cm}
 \includegraphics[width=\linewidth]{separation-2.png}
 \end{frame}
@@ -299,6 +299,9 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 \normalsize
 \vspace{0.35 cm}
 
+\hfill \includegraphics[height=1 cm]{uproot-logo.pdf}
+
+\vspace{-1.1 cm}
 Installs without ROOT (or any particular version of ROOT):
 
 \small
@@ -322,7 +325,7 @@ array([17.244043, 42.480724, 29.10839 , ..., 12.228868, 44.115654,
 \normalsize
 
 \begin{uncoverenv}<3->
-Multi-per-event become ``jagged arrays,'' variable-length sublists emulated by indexes.
+Multi-per-event become ``jagged arrays,'' variable-length sublists simulated by indexes.
 
 \small
 \begin{minted}{python}
@@ -336,13 +339,36 @@ jaggedarray([[41.46875  27.625    22.       18.734375],
 \end{uncoverenv}
 \end{frame}
 
-\begin{frame}{Casting bytes as arrays and computing on arrays is fast}
+\begin{frame}{Loading and computing columnar arrays is fast}
 \vspace{0.3 cm}
 \begin{columns}
 \column{1.15\linewidth}
 \includegraphics[width=\linewidth]{logscales.pdf}
 \end{columns}
 \end{frame}
+
+\begin{frame}{Works in progress this summer}
+\large
+\vspace{0.5 cm}
+\begin{itemize}\setlength{\itemsep}{0.5 cm}
+\item Writing data with uproot (TH* and hopefully TTree) \hfill Pratyush Das \\ \hfill \textcolor{gray}{\normalsize (DIANA-HEP fellow)}
+
+\item Jagged array algorithms (vectorized on GPU) \hfill Jaydeep Nandi \\ \hfill \textcolor{gray}{\normalsize (GSoC student)}
+\end{itemize}
+
+\uncover<2->{\textcolor{darkblue}{Logical extensions of Numpy for non-flat data:}}
+
+\small
+\vspace{0.25 cm}
+\uncover<2->{$\underbrace{\mbox{\tt metphi}}_{\mbox{flat}}${\tt\ -\ }$\underbrace{\mbox{\tt jetphi}}_{\mbox{jagged}}$ $\to$ $\underbrace{\mbox{\tt phidiff}}_{\mbox{jagged}}$}
+
+\vspace{0.25 cm}
+\mbox{ } \hfill \uncover<3->{$\underbrace{\mbox{\tt events}}_{\mbox{jagged}}${\tt[}$\underbrace{\mbox{\tt selection}}_{\mbox{flat booleans}}${\tt]} $\to$ $\underbrace{\mbox{\tt fewer\_events}}_{\mbox{jagged}}$} \hfill \mbox{ }
+
+\vspace{0.25 cm}
+\hfill \uncover<4->{$\underbrace{\mbox{\tt particle\_attrs}}_{\mbox{jagged}}${\tt .}$\underbrace{\mbox{\tt max()}}_{\mbox{reducer}}$ $\to$ $\underbrace{\mbox{\tt event\_attrs}}_{\mbox{flat}}$}
+\end{frame}
+
 
 
 \end{document}
