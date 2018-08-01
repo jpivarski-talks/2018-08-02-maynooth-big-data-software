@@ -30,7 +30,7 @@
 \definecolor{darkgreen}{rgb}{0,0.6,0}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\title[2018-08-02-maynooth-big-data-software]{Big Data Software in High Energy Physics}
+\title[2018-08-02-maynooth-big-data-software]{Big Data Software in Particle Physics}
 \author{Jim Pivarski}
 \institute{Princeton University -- DIANA-HEP}
 \date{August 2, 2018}
@@ -60,18 +60,19 @@
 Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 
 \vspace{0.75 cm}
-\uncover<2->{Anything that gets the job done!}
+\uncover<2->{Anything to get the job done!}
 \column{0.4\linewidth}
 \includegraphics[width=\linewidth]{hammer.jpg}
 \end{columns}
 
 \vspace{0.75 cm}
-\uncover<3->{\textcolor{darkblue}{But there are real differences and sometimes it matters:}}
+\uncover<3->{\Large \textcolor{darkblue}{But there are real differences and sometimes it matters:}}
 
+\large
 \vspace{0.1 cm}
 \begin{itemize}\setlength{\itemsep}{0.2 cm}
 \item<4-> Tool for the wrong problem \hfill (hammer vs.\ screwdriver)
-\item<5-> Ease of use/productivity \hfill (ergonomics of handle)
+\item<5-> Ease of use/productivity of data analyst \hfill (ergonomics of handle)
 \item<6-> Computational performance \hfill (sledge hammer weight)
 \end{itemize}
 \end{frame}
@@ -79,7 +80,7 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \begin{frame}{}
 \vspace{1 cm}
 \begin{center}
-\Large \textcolor{darkblue}{Why this matters now:}
+\huge \textcolor{darkblue}{Why this matters now:}
 
 \vspace{0.5 cm}
 \large we're not the only ones analyzing big datasets anymore: ``web scale analytics''
@@ -101,12 +102,12 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \end{center}
 \end{frame}
 
-\begin{frame}{Big data ecosystem developed largely independently of ours}
+\begin{frame}{Their ecosystem developed largely independently of ours}
 \vspace{0.17 cm}
 \includegraphics[width=\linewidth]{separation-2.png}
 \end{frame}
 
-\begin{frame}{Don't choose: use both!}
+\begin{frame}{Ideally, we should use the strengths of both}
 \vspace{0.5 cm}
 \large
 \begin{columns}[t]
@@ -140,19 +141,52 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \end{columns}
 \end{frame}
 
-\begin{frame}{Distributed processing: Spark}
-\Large
+\begin{frame}[fragile]{Distributed processing: Spark}
 \vspace{0.5 cm}
-\begin{columns}
-\column{0.6\linewidth}
+\begin{columns}[b]
+\column{0.59\linewidth}
+\textcolor{darkblue}{\Large \underline{Functional programming, managed data:}}
 
+\large
+\vspace{0.25 cm}
+\begin{itemize}
+\item Big, distributed dataset is a local variable
 
-\vspace{0.5 cm}
-\textcolor{darkblue}{\underline{Database-style view of data:}}
+\scriptsize
+\begin{minted}{python}
+lookup = spark.textFile("lookup.txt").map(int)
+table  = spark.cassandraTable("T").filter("col > 0")
+both   = table.join(lookup).where("n == N")
+cached = both.map("x**2 + y**2").cache()
+hist   = cached.reduce(histogram)
+cached.saveAsTextFile("tmp.txt")
+\end{minted}
+\end{itemize}
 
 \column{0.35\linewidth}
+\tiny
+
+\textcolor{blue}{\url{http://www.cs.sfu.ca/CourseCentral/732/ggbaker/content/spark.html}}
+
+\vspace{0.2 cm}
 \includegraphics[width=\linewidth]{spark-dag.png}
 \end{columns}
+
+\large
+\begin{itemize}
+\item Reduction or saving triggers a distributed job
+\item Spark manages files, dependencies, retry-on-failure
+\item Distributed dataset may be in RAM (fast), disk (big), or both (spill-over)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Accessing particle physics data in Spark}
+\vspace{0.5 cm}
+
+
+
+
+
 \end{frame}
 
 
