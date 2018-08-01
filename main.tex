@@ -94,8 +94,20 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \uncover<2->{\mbox{ } \hfill \includegraphics[width=0.7\linewidth]{aws-snowmobile.jpg}\hspace{-1 cm}}
 \end{frame}
 
-\begin{frame}{}
-\vspace{1 cm}
+\begin{frame}{Recently developed, but many eyes on the code\ldots}
+\vspace{0.5 cm}
+\begin{center}
+\includegraphics[width=0.8\linewidth]{root-spark-google-trends.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Big data ecosystem developed largely independently of ours}
+\vspace{0.17 cm}
+\includegraphics[width=\linewidth]{separation-2.png}
+\end{frame}
+
+\begin{frame}{Don't choose: use both!}
+\vspace{0.5 cm}
 \large
 \begin{columns}[t]
 \column{0.5\linewidth}
@@ -120,14 +132,28 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \vspace{0.1 cm}
 \begin{itemize}\setlength{\itemsep}{0.1 cm}
 \item reading/writing ROOT files
-\item collaboration frameworks, event reconstruction
+\item collaboration frameworks, triggers, event reconstruction
 \item advanced histogramming and fitting
-\item efficient variable-length lists (our kind of non-relational data)
+\item efficient variable-length lists \\ (our kind of non-relational data)
 \item domain-specific functions
 \end{itemize}
 \end{columns}
 \end{frame}
 
+\begin{frame}{Distributed processing: Spark}
+\Large
+\vspace{0.5 cm}
+\begin{columns}
+\column{0.6\linewidth}
+
+
+\vspace{0.5 cm}
+\textcolor{darkblue}{\underline{Database-style view of data:}}
+
+\column{0.35\linewidth}
+\includegraphics[width=\linewidth]{spark-dag.png}
+\end{columns}
+\end{frame}
 
 
 
