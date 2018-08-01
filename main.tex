@@ -380,6 +380,63 @@ Histogramming packages designed for Numpy arrays are feature-poor (from a partic
 \end{center}
 \end{frame}
 
+\begin{frame}[fragile]{Histogramming in histbook, plotting in Vega-Lite}
+\normalsize
+\vspace{0.5 cm}
+\hfill \includegraphics[height=0.8 cm]{histbook-logo.pdf}\mbox{\includegraphics[height=0.8 cm]{vegascope-logo.pdf}\hspace{-0.75 cm}}
+
+\vspace{-0.9 cm}
+Another two Python+Numpy packages \textcolor{gray}{(again, I'm the author)}
+
+\scriptsize
+\begin{minted}{bash}
+$ pip install histbook vegascope --user
+\end{minted}
+\normalsize
+
+\begin{uncoverenv}<2->
+All histograms are N-dimensional and the expression to compute is next to its binning.
+
+\vspace{0.2 cm}
+\hfill \includegraphics[height=2.3 cm]{histbook-beside.pdf}
+
+\vspace{-2.5 cm}
+\scriptsize
+\begin{minted}{python}
+>>> from histbook import *
+>>> hist = Hist(
+...    bin("sqrt(x**2 + y**2)", 5, 0, 1),
+...    bin("arctan2(y, x)", 3, -pi, pi))
+>>> hist.fill(dataframe)
+>>> beside(hist.step("sqrt(y**2 + x**2)"),
+...        hist.step("arctan2(y,x)"))
+\end{minted}
+\normalsize
+\end{uncoverenv}
+
+\begin{uncoverenv}<3->
+Projections, rebinning, binwise selections, can all be performed after filling.
+
+\vspace{0.2 cm}
+\hfill \includegraphics[height=2.3 cm]{histbook-stack.pdf}
+
+\vspace{-2.5 cm}
+\scriptsize
+\begin{minted}{python}
+>>> (hist.select("arctan2(y, x) >= -pi")
+...      .stack("arctan2(y, x)")
+...      .area("sqrt(x**2+y**2)"))
+\end{minted}
+\normalsize
+\end{uncoverenv}
+
+\vspace{0.2 cm}
+\begin{uncoverenv}<4->
+Plots appear inline in JupyterLab or can be viewed \\
+with VegaScope, a TCanvas-clone for Vega-Lite plots.
+\end{uncoverenv}
+\end{frame}
+
 \begin{frame}{}
 
 \end{frame}
