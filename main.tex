@@ -295,8 +295,53 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 \end{description}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}[fragile]{Numpy arrays and jagged arrays}
+\normalsize
+\vspace{0.35 cm}
 
+Installs without ROOT (or any particular version of ROOT):
+
+\small
+\begin{minted}{bash}
+$ pip install uproot --user
+\end{minted}
+\normalsize
+
+\begin{uncoverenv}<2->
+One-per-event values become Numpy arrays
+
+\small
+\begin{minted}{python}
+>>> import uproot
+>>> events = uproot.open("NanoAOD.root")["Events"]
+>>> events.array("MET_pt")
+array([17.244043, 42.480724, 29.10839 , ..., 12.228868, 44.115654,
+       33.511974], dtype=float32)
+\end{minted}
+\end{uncoverenv}
+\normalsize
+
+\begin{uncoverenv}<3->
+Multi-per-event become ``jagged arrays,'' variable-length sublists emulated by indexes.
+
+\small
+\begin{minted}{python}
+>>> events.array("Jet_pt")
+jaggedarray([[41.46875  27.625    22.       18.734375],
+             [23.75    23.64062 18.9687  ... 16.7812 16.2812 16.25  ],
+             ...,
+             [],
+             [34.03125  18.828125 18.359375]])
+\end{minted}
+\end{uncoverenv}
+\end{frame}
+
+\begin{frame}{Casting bytes as arrays and computing on arrays is fast}
+\vspace{0.3 cm}
+\begin{columns}
+\column{1.15\linewidth}
+\includegraphics[width=\linewidth]{logscales.pdf}
+\end{columns}
 \end{frame}
 
 
