@@ -95,7 +95,7 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \uncover<2->{\mbox{ } \hfill \includegraphics[width=0.7\linewidth]{aws-snowmobile.jpg}\hspace{-1 cm}}
 \end{frame}
 
-\begin{frame}{Their tools are new, but have many eyes on the code\ldots}
+\begin{frame}{Their tools are new, but widely used (many eyes on the code)}
 \vspace{0.5 cm}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{root-spark-google-trends.png}
@@ -281,9 +281,9 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 \vspace{0.5 cm}
 \renewcommand\CancelColor{\color{red}}
 \begin{description}\setlength{\itemsep}{0.5 cm}
-\item[PyROOT:] general solution but slow if called in a loop over events; new ROOT features like {\normalsize\tt TTree::AsMatrix()} fill Numpy arrays directly, but only for primitive types.
+\item[PyROOT:] general solution, but slow if called in a loop over events; new ROOT features like {\normalsize\tt TTree::AsMatrix()} fill Numpy arrays directly, but only for primitive types.
 
-\item[root\_numpy:]<2-> good solution for many years, except slow for nested data (e.g.~{\normalsize\tt std::vector<float>}) and compiles against a version of ROOT; changing ROOT version causes binary incompatibility.
+\item[root\_numpy:]<2-> good solution for many years, except slow for nested data (e.g.~{\normalsize\tt std::vector<float>}) and compiles against one version of ROOT; changing ROOT version breaks binary compatibility.
 
 \item[uproot:]<3-> reimplementation of ROOT I/O in Python+Numpy, skipping a step that is unnecessary for filling arrays:
 
@@ -311,7 +311,7 @@ $ pip install uproot --user
 \normalsize
 
 \begin{uncoverenv}<2->
-One-per-event values become Numpy arrays
+\underline{One-per-event values become Numpy arrays}
 
 \small
 \begin{minted}{python}
@@ -325,7 +325,7 @@ array([17.244043, 42.480724, 29.10839 , ..., 12.228868, 44.115654,
 \normalsize
 
 \begin{uncoverenv}<3->
-Multi-per-event become ``jagged arrays,'' variable-length sublists simulated by indexes.
+\underline{Multi-per-event become ``jagged arrays,'' variable-length sublists simulated by indexes}
 
 \small
 \begin{minted}{python}
@@ -347,13 +347,13 @@ jaggedarray([[41.46875  27.625    22.       18.734375],
 \end{columns}
 \end{frame}
 
-\begin{frame}{Works in progress this summer}
+\begin{frame}{Work in progress by summer students}
 \large
 \vspace{0.5 cm}
 \begin{itemize}\setlength{\itemsep}{0.5 cm}
 \item Writing data with uproot (TH* and hopefully TTree) \hfill Pratyush Das \\ \hfill \textcolor{gray}{\normalsize (DIANA-HEP fellow)}
 
-\item Jagged array algorithms (vectorized on GPU) \hfill Jaydeep Nandi \\ \hfill \textcolor{gray}{\normalsize (GSoC student)}
+\item Jagged array algorithms (vectorized on GPU) \hfill Jaydeep Nandi \\ \hfill \textcolor{gray}{\normalsize (Google Summer of Code)}
 \end{itemize}
 
 \uncover<2->{\textcolor{darkblue}{Logical extensions of Numpy for non-flat data:}}
@@ -373,7 +373,7 @@ jaggedarray([[41.46875  27.625    22.       18.734375],
 \Large
 \vspace{1 cm}
 
-Histogramming packages designed for Numpy arrays are feature-poor (from a particle physicist's perspective).
+Nearly all histogramming packages designed for Numpy arrays are feature-poor (from a particle physicist's perspective).
 
 \begin{center}
 \only<1>{\includegraphics[width=0.6\linewidth]{histogramming-1.pdf}}\only<2>{\includegraphics[width=0.6\linewidth]{histogramming-2.pdf}}
@@ -395,7 +395,7 @@ $ pip install histbook vegascope --user
 \normalsize
 
 \begin{uncoverenv}<2->
-All histograms are N-dimensional and the expression to compute is next to its binning.
+All histograms are N-dimensional and expressions to compute are next to their binning.
 
 \vspace{0.2 cm}
 \hfill \includegraphics[height=2.3 cm]{histbook-beside.pdf}
@@ -441,6 +441,9 @@ with VegaScope, a TCanvas-clone for Vega-Lite plots.
 \vspace{0.5 cm}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{root-spark-pandas-google-trends.png}
+
+\vspace{1 cm}
+\includegraphics[width=0.5\linewidth]{pandas-logo.png}
 \end{center}
 \end{frame}
 
