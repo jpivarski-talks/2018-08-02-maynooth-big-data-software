@@ -57,7 +57,7 @@
 \vspace{0.75 cm}
 \begin{columns}
 \column{0.53\linewidth}
-Sometimes viewed as a vacuous question, like ``What color is your hammer?''
+\mbox{Sometimes considered as a vacuous question,\hspace{-1 cm}} \\ like ``What color is your hammer?''
 
 \vspace{0.75 cm}
 \uncover<2->{Anything to get the job done!}
@@ -102,7 +102,7 @@ Sometimes viewed as a vacuous question, like ``What color is your hammer?''
 \end{center}
 \end{frame}
 
-\begin{frame}{Their ecosystem was mostly developed independently of ours}
+\begin{frame}{Their ecosystem was mostly developed independently from ours}
 \vspace{0.17 cm}
 \includegraphics[width=\linewidth]{separation-2.png}
 \end{frame}
@@ -176,9 +176,9 @@ cached.saveAsTextFile("tmp.txt")
 
 \large
 \begin{itemize}
-\item Distributed job starts when you ask for its output
-\item Spark manages files, task dependencies, retry-on-failure
-\item Distributed dataset may be in RAM (fast), disk (big), or both (spill-over)
+\item<2-> Distributed job starts when you ask for its output
+\item<3-> Spark manages files, task dependencies, retry-on-failure
+\item<4-> Distributed dataset may be in RAM (fast), disk (big), or both (spill-over)
 \end{itemize}
 \end{frame}
 
@@ -288,10 +288,10 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 \item[uproot:]<3-> reimplementation of ROOT I/O in Python+Numpy, skipping a step that is unnecessary for filling arrays:
 
 \vspace{0.35 cm}
-\mbox{ } \hfill bytes of ROOT file $\to$ \only<3>{C++ objects}\only<4>{\xcancel{C++ objects}} $\to$ Numpy arrays \hfill \mbox{ }
+\mbox{ } \hfill bytes of ROOT file $\to$ \only<3>{C++ objects}\only<4-5>{\xcancel{C++ objects}} $\to$ Numpy arrays \hfill \mbox{ }
 
 \vspace{0.35 cm}
-\textcolor{gray}{(disclosure: I'm the author)}
+\uncover<5->{\textcolor{gray}{(disclosure: I'm the author)}}
 \end{description}
 \end{frame}
 
@@ -356,7 +356,7 @@ jaggedarray([[41.46875  27.625    22.       18.734375],
 \item Jagged array algorithms (vectorized on GPU) \hfill Jaydeep Nandi \\ \hfill \textcolor{gray}{\normalsize (Google Summer of Code)}
 \end{itemize}
 
-\uncover<2->{\textcolor{darkblue}{Logical extensions of Numpy for non-flat data:}}
+\uncover<2->{\textcolor{darkblue}{\underline{Logical extensions of Numpy for non-flat data:}}}
 
 \small
 \vspace{0.25 cm}
