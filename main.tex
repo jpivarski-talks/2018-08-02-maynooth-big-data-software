@@ -285,7 +285,7 @@ mydata = (spark.read.format("org.dianahep.sparkroot")
 
 \item[root\_numpy:]<2-> good solution for many years, except slow for nested data (e.g.~{\normalsize\tt std::vector<float>}) and compiles against one version of ROOT; changing ROOT version breaks binary compatibility.
 
-\item[uproot:]<3-> reimplementation of ROOT I/O in Python+Numpy, skipping a step that is unnecessary for filling arrays:
+\item[uproot:]<3-> reimplementation of ROOT I/O in Python+Numpy with good performance, skipping a step that is unnecessary for filling arrays:
 
 \vspace{0.35 cm}
 \mbox{ } \hfill bytes of ROOT file $\to$ \only<3>{C++ objects}\only<4-5>{\xcancel{C++ objects}} $\to$ Numpy arrays \hfill \mbox{ }
